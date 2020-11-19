@@ -15,7 +15,7 @@ public class ReportController {
     private ReportService reportService;
 
     @GetMapping
-    public ResponseEntity<ReportDTO> hello(@RequestParam String carCode) {
+    public ResponseEntity<ReportDTO> findCar(@RequestParam String carCode) {
         try {
             return new ResponseEntity<>(
                 new ReportDTO(reportService.findCar(carCode), "Viatura encontrada!"),
