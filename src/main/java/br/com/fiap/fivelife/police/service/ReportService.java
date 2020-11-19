@@ -1,24 +1,26 @@
 package br.com.fiap.fivelife.police.service;
 
-import br.com.fiap.fivelife.police.dto.response.ReportDTO;
 import br.com.fiap.fivelife.police.entity.Car;
+import br.com.fiap.fivelife.police.exception.CarNotFoundException;
 import br.com.fiap.fivelife.police.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class ReportService {
     @Autowired
     private CarRepository carRepository;
 
-    public ReportDTO findCar(String carCode) {
-        Car car = carRepository.getByCarCode(carCode).orElse(null);
+    public Optional<Car> findCar(String carCode) throws CarNotFoundException {
+        Optional<Car> car = carRepository.getByCarCode(carCode);
 
-        if(car == null) {
-            return new ReportDTO(null, "Viatura não encontrada");
+        if(car.isEmpty()) {
+            throw new CarNotFoundException("Viatura não encontrada");
         }
 
-        return new ReportDTO(car, "Viatura encontrada!");
+        return car;
     }
 
 }

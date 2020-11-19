@@ -5,14 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class ReportDTO {
-    private Car car;
+    private Optional<Car> car;
     private String message;
 
-    public ReportDTO(Car car, String message) {
+    public ReportDTO(Optional<Car> car, String message) {
         this.car = car;
         this.message = message;
     }
