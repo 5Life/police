@@ -10,11 +10,11 @@ import java.util.Optional;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ReportDTO {
+public class AuthDTO {
     private Optional<Car> car;
     private String message;
 
-    public ReportDTO(Optional<Car> car, String message) {
+    public AuthDTO(Optional<Car> car, String message) {
         this.car = car;
         this.message = message;
     }
